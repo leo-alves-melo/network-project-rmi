@@ -98,14 +98,23 @@ public class Client {
 	
 	private static void sendJson(JsonObject json, String ip) {
 		try { 
-			server = (Connection) Naming.lookup("rmi://" + ip + "/Server"); 
-			String receivedJson = server.receiveJson(json.toString()); 
 			
-			JsonReader jsonReader = Json.createReader(new StringReader(receivedJson));
-			JsonObject jsonObject = jsonReader.readObject();
-			jsonReader.close();
+			for(int i = 0; i < 60; i++) {
+				long millis1 = System.nanoTime();
+				server = (Connection) Naming.lookup("rmi://" + ip + "/Server"); 
+				String receivedJson = server.receiveJson(json.toString()); 
+				long millis2 = System.nanoTime();
+				
+				System.out.println(millis2 - millis1); 
+			}
 			
-			parseJson(jsonObject);
+			
+			
+			//JsonReader jsonReader = Json.createReader(new StringReader(receivedJson));
+			//JsonObject jsonObject = jsonReader.readObject();
+			//127.0.0.1jsonReader.close();
+			
+			//parseJson(jsonObject);
 			
 		} 
 		catch (Exception e) { 

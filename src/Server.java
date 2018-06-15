@@ -39,9 +39,12 @@ public class Server extends UnicastRemoteObject implements Connection {
 	private static JsonObject database = null;
 	
 	public String receiveJson(String json) { 
-		System.out.print("Recebi a mensagem: "); 
 		
-		System.out.println(json); 
+		long millis1 = System.nanoTime();
+		
+		//System.out.print("Recebi a mensagem: "); 
+		
+		//System.out.println(json); 
 		
 		JsonReader jsonReader = Json.createReader(new StringReader(json));
 		JsonObject jsonObject = jsonReader.readObject();
@@ -81,6 +84,9 @@ public class Server extends UnicastRemoteObject implements Connection {
 	        	JsonObject jsonReturn = builder.add("message_number", code)
 	        			.add("content", jsonArray).build();
 				
+	        	long millis2 = System.nanoTime();
+	        	
+	        	System.out.println(millis2 - millis1);
 				return jsonReturn.toString();
 			}
 	        else if(code == 2) {
@@ -97,6 +103,9 @@ public class Server extends UnicastRemoteObject implements Connection {
 										)
 								.build();
 						
+						long millis2 = System.nanoTime();
+			        	
+			        	System.out.println(millis2 - millis1);
 						return jsonReturn.toString();
 					}
 				}
@@ -121,7 +130,9 @@ public class Server extends UnicastRemoteObject implements Connection {
 										)
 								.build();
 						
-						
+						long millis2 = System.nanoTime();
+			        	
+			        	System.out.println(millis2 - millis1);
 						return jsonReturn.toString();
 					}
 				}
@@ -155,6 +166,9 @@ public class Server extends UnicastRemoteObject implements Connection {
 	        	JsonObject jsonReturn = builder.add("message_number", code)
 	        			.add("content", jsonArray).build();
 				
+	        	long millis2 = System.nanoTime();
+	        	
+	        	System.out.println(millis2 - millis1);
 				return jsonReturn.toString();
 			}
 	        else if(code == 5) {
@@ -208,6 +222,9 @@ public class Server extends UnicastRemoteObject implements Connection {
 				    out.println(database.toString());
 				}
 				
+				long millis2 = System.nanoTime();
+	        	
+	        	System.out.println(millis2 - millis1);
 				return actual.toString();
 			}
 	        else if(code == 6) {
@@ -224,7 +241,9 @@ public class Server extends UnicastRemoteObject implements Connection {
 										)
 								.build();
 						
-						
+						long millis2 = System.nanoTime();
+			        	
+			        	System.out.println(millis2 - millis1);
 						return jsonReturn.toString();
 					}
 				}

@@ -35,13 +35,10 @@ public class Client {
 				Iterator<JsonValue> iterator = content.iterator();
 				while(iterator.hasNext()) {
 					JsonObject information = (JsonObject) iterator.next();
-					System.out.println("------------------------");
-					System.out.println(information.toString());
-					
+				
 					System.out.println("Título: " + information.getString("nome"));
 					System.out.println("Código: " + information.getString("codigo") + "\n");
-					
-					
+	
 				}
 			}
 			else if(number == 2) {
@@ -245,7 +242,10 @@ System.out.println("Bem-vindo, professor!");
 				System.out.println("Escreva o nome da disciplina:");
 				String disciplina = reader.next();
 				System.out.println("Escreva o comentário:");
-				String comentario = reader.next();
+				reader.nextLine();
+				String comentario = reader.nextLine();
+				
+				
 				
 				JsonObject json = builder.add("message_number", 5)
 						.add("content", factory.createObjectBuilder()
